@@ -1,1 +1,18 @@
-
+manifestVersion: 1
+id: myapps-odysseus
+category: ai
+name: Odysseus
+version: "1.0.3"
+tagline: Local-first AI workspace
+description: >-
+  Self-hosted AI workspace with chat, document editor, web research, and email/calendar tools.
+developer: odysseus-dev
+website: https://github.com/odysseus-dev/odysseus
+dependencies: []
+repo: https://github.com/odysseus-dev/odysseus
+support: https://github.com/odysseus-dev/odysseus/issues
+port: 7011
+gallery: []
+path: ""
+defaultUsername: admin
+defaultPassword: ""
