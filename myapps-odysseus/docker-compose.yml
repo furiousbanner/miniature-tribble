@@ -1,0 +1,35 @@
+services:
+  app_proxy:
+    environment:
+      APP_HOST: myapps-odysseus_odysseus_1
+      APP_PORT: 7000
+
+  odysseus:
+    image: ghcr.io/odysseus-dev/odysseus:latest
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/data
+      - ${APP_DATA_DIR}/logs:/app/logs
+    environment:
+      - AUTH_ENABLED=true
+      - LOCALHOST_BYPASS=false
+      - SECURE_COOKIES=false
+      - LM_STUDIO_URL=http://100.118.243.33:1234
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+      - SEARXNG_INSTANCE=http://searxng:8080
+    depends_on:
+      - chromadb
+      - searxng
+
+  chromadb:
+    image: chromadb/chroma:latest
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/chroma:/chroma/chroma
+
+  searxng:
+    image: searxng/searxng:latest
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/searxng:/etc/searxng
